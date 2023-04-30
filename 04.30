@@ -1,0 +1,20 @@
+리스트는 수정 가능 , 튜플은 수정 불가능 
+Pandas = 데이터 분석을 위한 파이썬 라이브러리 <- NumPy기반
+Pandas의 자료구조 Series,DataFrame.
+Series는 1차원 자료구조
+DataFrame은 2차원 자료구조
+임포트 방식 : from pandas import Series, DataFrame
+pandas.Series
+pandas.FataFrame
+간단화 : import pandas as pd
+>>pd.Series()
+>>pd.DataFrame()
+#Series
+from pandas import Series
+arr = [0,1,2,3]
+s = Series(arr)
+print(s)
+//s = Series(value,key)형식으로 저장되어 출력할시 index, values의 형태로 바뀌어 나옴 
+index를 따로 지정하지 않으면 1,2,3,4...등의 정수형태로 자동지정됨,이와 별개로 행번호가 존재함.
+인덱스의 마지막 값을 모를떄 행번호인 -1을 입력해 가져올수있다.
+Series의 속성 : index,values가있다.
