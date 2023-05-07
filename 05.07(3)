@@ -1,0 +1,35 @@
+//DataFrame생성 #2차원데이터
+data = {
+    "종가" : [157000, 51300, 68800, 1440000],
+    "PER" : [39.88, 8.52, 10.03, 228.38],
+    "PBR" : [4.38, 1.45, 0.87, 2.16]
+}
+
+index = ['NAVER', "삼성전자", 'LG전자', '카카오']
+df = pd.DataFrame(data, index)
+print(df)
+
+//DataFrame생성-2 #가로출력
+data = [
+    [157000,39.88,4.38],
+    [51300,8.52,1.45],
+    [68800,10.03,0.87],
+    [140000,228.38,2.16]
+]
+
+index = ['NAVER', "삼성전자", 'LG전자', '카카오']
+columns = ['종가', 'PER', 'PBR']
+
+df = pd.DataFrame(data=data, index=index, columns=columns)
+print(df)
+
+//DataFrame생성-3 #딕셔너리로 표현
+data = [    
+    {"종가":157000,"PER":39.88,"PBR":4.38},    
+    {"종가":51300,"PER":8.52,"PBR":1.45},    
+    {"종가":68800,"PER":10.03,"PBR":0.87},    
+    {"종가":140000,"PER": 228.38,"PBR":2.16}
+]
+index = ['NAVER', "삼성전자", 'LG전자', '카카오']
+df = pd.DataFrame(data=data, index=index)
+print(df)
