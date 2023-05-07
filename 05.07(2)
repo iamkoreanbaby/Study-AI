@@ -1,0 +1,30 @@
+//브로드캐스팅(Broadcasting)
+s = pd.Series([100, 200, 300])
+print(s + 10)
+
+//사칙연산(1)
+high = pd.Series([51500, 51200, 52500, 51500, 51500])
+low = pd.Series([50700, 50500, 50500, 50800, 50700])
+diff = high-low #동일한 인덱스 값을 가진 값 기리 계산을한다.
+print(diff)
+
+//사칙연산(2)
+high = pd.Series(data=[51500, 51200, 52500], index=["5/1", "5/2", "5/3"])
+low = pd.Series(data=[50700, 50500, 50500], index=["5/1", "5/2", "5/4"])
+diff = high-low #같은 인덱스를 가진 값 기리 뺀후 결과 값이 같은 인덱스 값 자리에 저장됨.
+print(diff)
+
+//비교 연산 
+s = pd.Series(data=[100,200,300,400,500])
+cond = s > 300 #모든 시리즈 값을 비교하여 False/True 로 저장됨.
+print(cond)
+
+//필터링(1)
+s = Series(data=[100,200,300,400,500])
+cond = [False,False,False,True,True]
+s[cond] #True인 값의 결과만 필터링하여 리턴
+
+//필터링(2)
+s = Series(data=[100,200,300,400,500])
+cond = s>300 #조건에 충족하는 값만 필터링하여 리턴
+print(s[cond]) 
