@@ -1,0 +1,19 @@
+#브로드캐스팅
+import pyupbit
+df = pyupbit.get_ohlcv("KRW-BTC")
+
+df['open']+100
+
+#데이터프레임 필터링(1)
+cond = df['close']> df['open']
+cond
+
+#데이터프레임 필터링(2)
+cond = df['close'] > ['open']
+df[cond] #각 인덱스에 대해서 True인 로우만 필터링
+
+#컬럼 시프트(1)
+df['high'] - df['low]
+
+#컬럼 시프트(2)
+df['close_shift1'] = df['close'].shfit(1)
