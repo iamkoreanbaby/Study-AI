@@ -1,1 +1,39 @@
+#컬럼추가
+import pyupbit
+df = pyupbit.get_ohlcv('KRW-BTC')
+df['range']=df['high']-df['low']
 
+#pyupbit 설치
+!pip install pyupbit
+#pyupbit 업데이트
+!pip install -U pyupbit
+
+df.head() #앞의 5개 정보
+
+#컬럼삭제
+df.drop('컬럼명', axis=1) #원본은 그대로 유지 컬럼이 삭제된 새로운 데이터프레임 객체 리턴
+axis=0 #low axis=1 #컬럼
+df.drop('value', axis=1)
+
+#시계열 데이터와 인덱스
+import pandas as pd
+
+//date = ['2021-04-09']
+index = pd.to_datetime(data)
+
+print(type(date)) #대괄호를 사용하였기에 리스트타입
+print(type(index)) # 리스트가DatetimeIndex로 바뀐다.
+
+//date = "2021-04-09"
+index = pd.to_datetime(data)
+
+print(type(date)) #   ""   =리스트
+print(type(index)) # str = Timestamp으로 타입이 바뀐다.
+
+#로우 추가
+date = '2022-10-05 9:00:00'
+dt = pd.to_datetime(date)
+
+df.loc[dt]=[100,110,100,100,100,100]
+
+df.index[-1] = #마지막부터 첫번쨰 숫자
