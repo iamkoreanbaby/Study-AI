@@ -1,0 +1,52 @@
+# 라이브러리 호출 및 데이터 준비
+
+import numpy as np # 백터 및 행렬의 연산 처리를 위한 라이브러리
+import pandas as pd # 데이터 분석 및 조작을 위한 라이브러리
+import matplotlib.pyplot as plt # 데이터를 차트나 플롯(plot)으로 그려 주는 라이브러리
+from sklearn import metrics # 모델 성능 평가
+
+names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'Class'] # 데이터셋에 열 이름 할당
+
+dataset = pd.read_csv('data/ch3/iris.data', names=names) # 데이터를 판다스 데이터프레임(DataFrame)에 저장, 경로는 수정해서 진행
+
+# 훈련과 테스트 데이터셋 분리
+
+X = dataset.iloc[:, :-1].values # 모든 행을 사용하지만 열은 뒤에서 하나를 뺸 값을 가져와서 X에 저장
+y = dataset.iloc[:, 4].values # 모든 행을 사용하지만 열은 앞에서 다섯 번째 값만 가져와서 y에 저장
+
+from sklearn.model_selection import train_test_split 
+# X,y를 사용하여 훈련과 테스트 데이터셋으로 분리하며, 테스트 세트의 비율은 20%만 사용
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
+#함수를 사용하여 입력 변수(X)와 예측 레이블(y)을 훈련 데이터와 테스트 데이터로 분할하는 부분입니다.
+
+from sklearn.preprocessing import StandardScaler
+s = StandardScaler() # 특성 스케일링(scaling), 평균이 0, 표준편차가 1이 되도록 반환
+s.fit(X_train) # 훈련 데이터에 대해 적합화
+X_train = s.transform(X_train) # 훈련 데이터를 스케일링 처리
+X_test = s.transform(X_test) # 테스트 데이터를 스케일링 처리
+
+# 모델 생성 및 훈련
+
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors=50)
+knn.fit(X_train, y_train)
+//분류기를 생성하고 생성한 분류기를 훈련 데이터에 대해 훈련시키는 과정을 나타냅니다.
+
+# 모델 정확도
+//예측 결과의 정확도를 계산하여 출력하는 과정
+from sklearn.metrics import accuracy_score # 정확도 평가 정답값 배열과 예측값 배열을 입력 >>>예측된 결과와 실제 레이블 간의 정확도를 계산하는 함수입니다.
+y_pred = knn.predict(X_test) #메서드를 사용하여 주어진 입력 데이터에 대한 예측 결과를 반환합니다. 이를 y_pred 변수에 저장합니다.
+print("정확도 : {}".format(accuracy_score(y_test, y_pred)))
+
+k = 10
+acc_array = np.zeros(k)
+for k in np.arange(1, k+1, 1):
+    classifier = KNeighborsClassifier(n_neighbors=k).fit(X_train, y_train)
+    y_pred = classifier.predict(X_test)
+    acc = metrics.accuracy_score(y_test, y_pred)
+    acc_array[k-1] = acc #값은 1부터 시작하므로, 배열의 인덱스는 k-1이 됩니다
+    
+max_acc = np.amax(acc_array) #배열에서 최대값을 찾아 max_acc 변수에 저장하는 부분입니다.
+acc_list = list(acc_array) #배열을 리스트로 변환하여 acc_list 변수에 저장하는 부분입니다.
+k = acc_list.index(max_acc) #max_acc 값이 위치한 인덱스를 찾아 k 변수에 저장하는 부분입니다.
+print("정확도", max_acc, "으로 최적의 k는", k+1, "입니다") #문자열 포맷팅을 사용하여 최적의 k 값과 정확도를 출력합니다.
