@@ -1,0 +1,15 @@
+# 라이브러리 호출
+
+from sklearn import svm #관련 기능을 제공하는 svm 모듈을 가져오는 부분입니다.
+from sklearn import metrics #모델의 성능 평가에 사용되는 메트릭을 제공하는 metrics 모듈을 가져오는 부분입니다.
+from sklearn import datasets #예제 데이터셋을 가져오는데 사용되는 datasets 모듈을 가져오는 부분입니다.
+from sklearn import model_selection #모델의 선택 및 평가에 사용되는 함수들을 제공하는 model_selection 모듈을 가져오는 부분입니다.
+from sklearn.svm import SVC #SVM(Support Vector Machine) 알고리즘을 구현한 SVC 클래스를 가져오는 부분입니다.
+import tensorflow as tf #TensorFlow 라이브러리를 가져오는 부분입니다.
+import os
+
+# 기본값 0 모든 로그가 표시됨
+# 1 : INFO 로그를 필터링
+# 2 : WARNING 로그를 필터링
+# 3 : ERROR 로그를 추라고 필터링
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
